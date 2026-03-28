@@ -9,6 +9,8 @@ form.addEventListener('submit', event => {
   const delay = Number(form.elements.delay.value);
   const state = form.elements.state.value;
 
+  console.log(state);
+
   createPromise(delay, state)
     .then(delay => {
       iziToast.success({
@@ -35,7 +37,7 @@ function createPromise(delay, state) {
     setTimeout(() => {
       if (state === 'fulfilled') {
         resolve(delay);
-      } else {
+      } else if (state === 'rejected') {
         reject(delay);
       }
     }, delay);
